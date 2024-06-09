@@ -13,7 +13,7 @@ const PORT = process.env.PORT;
 // Connect to MongoDB
 mongoose.connect(process.env.MONGOLOCAL)
 .then(() => console.log('MongoDB connected'))
-.catch((err) => console.error('MongoDB connection error:', err));
+.catch((err) => console.error('MongoDB connection error:', err)); 
 
 app.get("/api",(req,res)=>{
   res.json({message:"api is called"});
