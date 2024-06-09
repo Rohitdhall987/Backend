@@ -1,0 +1,23 @@
+{
+  "name": "beatbuddies",
+  "version": "1.0.0",
+  "description": "backend for my music player web app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Rohit",
+  "license": "MIT",
+  "dependencies": {
+    "@filebase/client": "^0.0.5",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.1.0",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.0"
+  }
+}
