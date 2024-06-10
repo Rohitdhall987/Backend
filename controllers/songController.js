@@ -2,6 +2,8 @@ import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import Songs from '../models/Songs.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -50,26 +52,45 @@ const upload = multer({
 
 
 
-const AddSong=async (req, res) => {
-    upload(req, res, function (err) {
+const AddSong= (req, res) => {
+    upload(req, res, async function (err) {
+
+        const {title,singer}=req.body;
+
         if (err) {
             return res.status(400).json({ message: err.message });
         }
         
      
-        if (!req.files || !req.files.thumbnail || !req.files.audio) {
-            return res.status(400).json({ message: "Both thumbnail and audio files are required." });
+        if (!req.files || !req.files.thumbnail || !req.files.audio || !title || !singer) {
+            return res.status(400).json({ message: "all fields are required." });
         }
 
   
         const thumbnailPath = req.files.thumbnail[0].path;
         const audioPath = req.files.audio[0].path;
+        const audioName = req.files.audio[0].originalname;
+        
+        const newSong=new Songs({
+            title : title,
+            fileName : audioName,
+            filePath : audioPath,
+            singer : singer,
+            thumbnailPath : thumbnailPath
+        });
+
+        await newSong.save();
 
 
         res.status(200).json({
             message: "Song uploaded successfully!",
-            thumbnailPath: thumbnailPath,
-            audioPath: audioPath
+            data:{
+                title : title,
+                fileName : audioName,
+                filePath : audioPath,
+                singer : singer,
+                thumbnailPath : thumbnailPath
+            }
         });
     });
 };
