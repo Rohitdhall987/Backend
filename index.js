@@ -22,8 +22,8 @@ mongoose.connect(process.env.MONGOLOCAL)
 
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your React app's URL
-  methods: ['POST', 'GET', 'OPTIONS'],
+  origin: 'http://localhost:5173', 
+  methods: ['POST', 'GET',],
   allowedHeaders: ['Content-Type']
 }));
 
