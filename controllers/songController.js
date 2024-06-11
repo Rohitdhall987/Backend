@@ -123,7 +123,7 @@ const GetSongs = async (req, res) => {
 
 // Function to find and delete a song from the database by its ID
 const DeleteById = async (req, res) => {
-    const { id } = req.query;
+    const { id } = req.body;
 
     // Check if the id is provided
     if (!id) {
