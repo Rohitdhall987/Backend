@@ -5,7 +5,9 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 const SongRoutes = express.Router();
 
-SongRoutes.use(authMiddleware);
+SongRoutes.use((req, res, next)=>{
+    authMiddleware(req, res, next,process.env.JWT_SECRET );
+});
 
 SongRoutes.post('/addSong', AddSong);
 

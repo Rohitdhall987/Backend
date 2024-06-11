@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
 
-        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+        cb(null, `${file.fieldname}_${Date.now()}_${file.originalname}`);
     }
 });
 
@@ -66,17 +66,20 @@ const AddSong= (req, res) => {
             return res.status(400).json({ message: "all fields are required." });
         }
 
+
+        console.log(req.files);
+
   
-        const thumbnailPath = req.files.thumbnail[0].path;
-        const audioPath = req.files.audio[0].path;
-        const audioName = req.files.audio[0].originalname;
+
+        const thumbnailName = req.files.thumbnail[0].filename;
+        const audioName = req.files.audio[0].filename;
         
         const newSong=new Songs({
             title : title,
             fileName : audioName,
-            filePath : audioPath,
+            filePath : "/public/audio/"+audioName,
             singer : singer,
-            thumbnailPath : thumbnailPath
+            thumbnailPath : "/public/images/"+thumbnailName
         });
 
         await newSong.save();
@@ -87,9 +90,9 @@ const AddSong= (req, res) => {
             data:{
                 title : title,
                 fileName : audioName,
-                filePath : audioPath,
+                filePath : "/public/audio/"+audioName,
                 singer : singer,
-                thumbnailPath : thumbnailPath
+                thumbnailPath : "/public/images/"+thumbnailName
             }
         });
     });
