@@ -44,7 +44,9 @@ app.get("/",(req,res)=>{
 
 // Use Routes
  app.use('/api/admin_users', userRoutes);
- app.use('/api/songs/', SongRoutes);
+ app.use('/api/artists', artistRoutes);
+ app.use('/api/albums', albumRoutes);
+ app.use('/api/songs', songRoutes);
 
 
 
