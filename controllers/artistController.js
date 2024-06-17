@@ -1,5 +1,4 @@
 import Artist from '../models/artistModel.js';
-import Album from '../models/albumModel.js';
 
 // Add Artist
 export const addArtist = async (data) => {
