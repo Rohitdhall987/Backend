@@ -8,14 +8,14 @@ import {
 } from '../controllers/albumController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
 
-const router = express.Router();
+const albumRoutes = express.Router();
 
 
-router.use((req, res, next)=>{
+albumRoutes.use((req, res, next)=>{
     authMiddleware(req, res, next,process.env.JWT_SECRET );
 });
 
-router.post('/', async (req, res) => {
+albumRoutes.post('/', async (req, res) => {
   try {
     const album = await addAlbum(req.body);
     res.status(201).json(album);
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+albumRoutes.delete('/:id', async (req, res) => {
   try {
     await deleteAlbum(req.params.id);
     res.status(204).send();
@@ -33,7 +33,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+albumRoutes.put('/:id', async (req, res) => {
   try {
     const album = await updateAlbum(req.params.id, req.body);
     res.status(200).json(album);
@@ -42,7 +42,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+albumRoutes.get('/:id', async (req, res) => {
   try {
     const album = await getAlbum(req.params.id);
     res.status(200).json(album);
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+albumRoutes.get('/', async (req, res) => {
   try {
     const albums = await getAllAlbums();
     res.status(200).json(albums);
@@ -60,4 +60,4 @@ router.get('/', async (req, res) => {
   }
 });
 
-export default router;
+export default albumRoutes;

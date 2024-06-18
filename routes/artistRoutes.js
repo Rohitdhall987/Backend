@@ -8,15 +8,15 @@ import {
 } from '../controllers/artistController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
 
-const router = express.Router();
+const artistRoutes = express.Router();
 
 
-router.use((req, res, next)=>{
+artistRoutes.use((req, res, next)=>{
     authMiddleware(req, res, next,process.env.JWT_SECRET );
 });
 
 
-router.post('/', async (req, res) => {
+artistRoutes.post('/', async (req, res) => {
   try {
     const artist = await addArtist(req.body);
     res.status(201).json(artist);
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+artistRoutes.delete('/:id', async (req, res) => {
   try {
     await deleteArtist(req.params.id);
     res.status(204).send();
@@ -34,7 +34,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+artistRoutes.put('/:id', async (req, res) => {
   try {
     const artist = await updateArtist(req.params.id, req.body);
     res.status(200).json(artist);
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+artistRoutes.get('/:id', async (req, res) => {
   try {
     const artist = await getArtist(req.params.id);
     res.status(200).json(artist);
@@ -52,7 +52,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+artistRoutes.get('/', async (req, res) => {
   try {
     const artists = await getAllArtists();
     res.status(200).json(artists);
@@ -61,4 +61,4 @@ router.get('/', async (req, res) => {
   }
 });
 
-export default router;
+export default artistRoutes;

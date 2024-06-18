@@ -6,6 +6,8 @@ import SongRoutes from './routes/songRoutes.js';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import albumRoutes from './routes/albumRoutes.js';
+import artistRoutes from './routes/artistRoutes.js';
 
 
 
@@ -46,7 +48,7 @@ app.get("/",(req,res)=>{
  app.use('/api/admin_users', userRoutes);
  app.use('/api/artists', artistRoutes);
  app.use('/api/albums', albumRoutes);
- app.use('/api/songs', songRoutes);
+ app.use('/api/songs', SongRoutes);
 
 
 
