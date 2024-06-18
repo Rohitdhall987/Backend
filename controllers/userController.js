@@ -7,10 +7,6 @@ export const registerAdmin = async (req, res) => {
 
   const { name, email, password } = req.body;
 
-
-
-  console.log(name);
-
   try {
 
     if (name == null || email == null || password == null) {
