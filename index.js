@@ -39,10 +39,6 @@ app.use(cors({
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
-app.get("/",(req,res)=>{
-  res.json({message:"connected"});
-});
-
 
 // Use Routes
  app.use('/api/admin_users', userRoutes);
