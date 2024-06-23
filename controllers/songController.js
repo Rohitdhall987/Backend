@@ -44,7 +44,7 @@ const upload = multer({
         cb(null, true);
     },
     limits: {
-        fileSize: 10 * 1024 * 1024 // Limiting file size to 10MB
+        fileSize: 3 * 1024 * 1024 // Limiting file size to 3MB
     }
 }).fields([{ name: "thumbnail", maxCount: 1 }, { name: "audio", maxCount: 1 }]);
 
