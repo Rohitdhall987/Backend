@@ -97,7 +97,7 @@ const addSong = (req, res) => {
 const getSongs = async (req, res) => {
     try {
         // Fetch all songs and populate album data
-        const songs = await Songs.find().populate('album');
+        const songs = await Songs.find();
         res.status(200).json(songs);
     } catch (error) {
         console.error('Error fetching songs:', error);
